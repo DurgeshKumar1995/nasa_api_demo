@@ -7,4 +7,5 @@
     <string name="opportunity">Opportunity</string>
     <string name="enter_likes_10_100_1000">Enter likes 10,100,1000</string>
     <string name="connect_to_internet">Please connect to internet</string>
+    <string name="retry">Retry</string>
 </resources>

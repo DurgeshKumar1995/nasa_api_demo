@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder
 import com.unorg.nasa.BuildConfig
 import com.unorg.nasa.network.BaseRepository
 import com.unorg.nasa.network.InterfaceGlobalAPI
+import com.unorg.nasa.repo.RoverPagerRepo
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -26,6 +27,7 @@ object NetworkModule {
         single { provideBaseRepository() }
         single { provideRetrofit(get(), get()) }
         single { provideInterfaceGlobalAPI(get()) }
+        single { provideRoverPagerRepo(get()) }
 
 
     }
@@ -70,6 +72,8 @@ object NetworkModule {
         retrofit.create(InterfaceGlobalAPI::class.java)
 
     fun provideBaseRepository(): BaseRepository = BaseRepository()
+
+    fun provideRoverPagerRepo(globalAPI: InterfaceGlobalAPI): RoverPagerRepo = RoverPagerRepo(globalAPI)
 
 
 }

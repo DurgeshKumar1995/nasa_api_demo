@@ -16,7 +16,7 @@ object ViewModelModules {
     val viewModels: Module = module {
 
         single<APIRepository> { AppImpl(get(),get()) }
-        viewModel { MainViewModel(get()) }
+        viewModel { MainViewModel(get(),get()) }
         viewModel { WelcomeViewModel() }
 
     }
