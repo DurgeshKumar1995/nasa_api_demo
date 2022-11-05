@@ -11,7 +11,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import okhttp3.logging.HttpLoggingInterceptor
-import javax.net.ssl.*
 import okhttp3.OkHttpClient
 
 

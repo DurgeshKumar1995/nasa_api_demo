@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">NasaImageApplication</string>
-    <string name="loading">Loading…</string>
-    <string name="onCreate">onCreate</string>
     <string name="curiosity">Curiosity</string>
     <string name="spirit">Spirit</string>
     <string name="opportunity">Opportunity</string>

@@ -24,7 +24,7 @@ class ImageDetailsActivity : AppCompatActivity() {
                 val imageData: Photo? = if (Build.VERSION.SDK_INT >= 33) {
                     intent.getParcelableExtra(Constants.IMADE_DETAIL_KEY, Photo::class.java)
                 } else {
-                    intent.getParcelableExtra<Photo>(Constants.IMADE_DETAIL_KEY)
+                    intent.getParcelableExtra(Constants.IMADE_DETAIL_KEY)
                 }
                 if (imageData == null) {
                     Toast.makeText(baseContext, getString(R.string.no_data), Toast.LENGTH_SHORT)

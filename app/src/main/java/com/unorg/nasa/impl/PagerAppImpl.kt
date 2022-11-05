@@ -3,11 +3,7 @@ package com.unorg.nasa.impl
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.unorg.nasa.model.Photo
-import com.unorg.nasa.model.RoverResponseModel
-import com.unorg.nasa.network.BaseRepository
 import com.unorg.nasa.network.InterfaceGlobalAPI
-import com.unorg.nasa.network.Resource
-import com.unorg.nasa.repo.APIRepository
 
 class PagerAppImpl(private val globalAPI: InterfaceGlobalAPI,private val roverType: String,private val solKey:Int) : PagingSource<Int, Photo>(){
     override fun getRefreshKey(state: PagingState<Int, Photo>): Int? {
