@@ -12,7 +12,7 @@ import com.unorg.nasa.network.InterfaceGlobalAPI
 
 class RoverPagerRepo(private val globalAPI: InterfaceGlobalAPI) {
 
-    fun getSearchResultStream(roverType: String,solKey:Int): LiveData<PagingData<Photo>> {
+    fun getPhotos(roverType: String,solKey:Int): LiveData<PagingData<Photo>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 25,

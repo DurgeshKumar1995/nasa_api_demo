@@ -23,7 +23,7 @@ class MainViewModel(private val apiRepository: APIRepository,private val pagerRe
 
 
     fun getData(roverType: String,solKey:Int):LiveData<PagingData<Photo>>{
-        return pagerRepo.getSearchResultStream(roverType, solKey).cachedIn(viewModelScope)
+        return pagerRepo.getPhotos(roverType, solKey).cachedIn(viewModelScope)
     }
 
 }

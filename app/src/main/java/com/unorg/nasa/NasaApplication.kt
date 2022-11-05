@@ -6,6 +6,7 @@ import com.unorg.nasa.di.ViewModelModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import org.koin.core.context.stopKoin
 
 class NasaApplication: Application() {
 
@@ -16,5 +17,10 @@ class NasaApplication: Application() {
             androidContext(this@NasaApplication)
             modules(NetworkModule.networkModule,ViewModelModules.viewModels)
         }
+    }
+
+    override fun onTerminate() {
+        super.onTerminate()
+        stopKoin()
     }
 }
