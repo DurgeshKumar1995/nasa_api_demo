@@ -6,6 +6,13 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
+    <queries>
+        <package android:name="org.telegram.messenger"/>
+        <package android:name="com.whatsapp"/>
+        <intent>
+            <action android:name="android.intent.action.SEND"/>
+        </intent>
+    </queries>
     <application
         android:name=".NasaApplication"
         android:allowBackup="true"
@@ -16,9 +23,15 @@
         android:theme="@style/Theme.NasaImageApplication"
         tools:targetApi="31">
         <activity
+            android:name=".ui.details.view.ImageDetailsActivity"
+            android:exported="false"
+            android:label="@string/title_image_details_screen">
+
+        </activity>
+        <activity
             android:name=".ui.main.view.MainActivity"
-            android:label="@string/title_image_screen"
-            android:exported="false"/>
+            android:exported="false"
+            android:label="@string/title_image_screen" />
         <activity
             android:name=".ui.welcome.view.WelcomeActivity"
             android:exported="true">

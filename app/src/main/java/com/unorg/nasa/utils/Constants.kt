@@ -6,4 +6,6 @@ object Constants {
     const val ROVER_TYPE = "rover_type"
     const val ROVER__SOL = "rover_sol"
 
+    const val IMADE_DETAIL_KEY = "image_details_key"
+
 }

@@ -9,4 +9,13 @@
     <string name="connect_to_internet">Please connect to internet</string>
     <string name="retry">Retry</string>
     <string name="title_image_screen">Image List</string>
+    <string name="title_image_details_screen">Image Details</string>
+    <string name="no_data">No Data found</string>
+    <string name="share">Share</string>
+    <string name="na">N/A</string>
+    <string name="camera_details_string">Camera Name: %s </string>
+    <string name="sol_string">Sol: %d </string>
+    <string name="launch_string">Launching Date: %s </string>
+    <string name="landing_string">Landing Date: %s </string>
+    <string name="rover_string">Rover: %s </string>
 </resources>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="imageModel"
+            type="com.unorg.nasa.model.Photo" />
+
+        <import type="com.unorg.nasa.utils.BindingAdapters"/>
+        <import type="com.unorg.nasa.utils.DateUtils"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.details.view.ImageDetailsActivity">
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingBottom="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/bth_share">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:loadImage="@{imageModel.img_src}"
+                    android:scaleType="fitXY"
+                    android:id="@+id/image"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    tools:src="@drawable/ic_launcher_foreground"
+                    />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:textSize="16sp"
+                    android:id="@+id/txt_camera_name"
+                    app:layout_constraintTop_toBottomOf="@id/image"
+                    tools:text="@string/app_name"
+                    android:text="@{@string/camera_details_string(imageModel.camera.full_name),default=@string/na}"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:textSize="16sp"
+                    android:id="@+id/txt_sol"
+                    app:layout_constraintTop_toBottomOf="@id/txt_camera_name"
+                    tools:text="@string/app_name"
+                    android:text="@{@string/sol_string(imageModel.sol),default=@string/na}"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:textSize="16sp"
+                    android:id="@+id/txt_launching_data"
+                    app:layout_constraintTop_toBottomOf="@id/txt_sol"
+                    tools:text="@string/app_name"
+                    android:text="@{@string/launch_string(DateUtils.getDate(imageModel.rover.launch_date)),default=@string/na}"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:textSize="16sp"
+                    android:id="@+id/txt_landing_data"
+                    app:layout_constraintTop_toBottomOf="@id/txt_launching_data"
+                    tools:text="@string/app_name"
+                    android:text="@{@string/landing_string(DateUtils.getDate(imageModel.rover.landing_date)),default=@string/na}"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:textSize="16sp"
+                    app:layout_constraintTop_toBottomOf="@id/txt_landing_data"
+                    tools:text="@string/app_name"
+                    android:text="@{@string/rover_string(imageModel.rover.name),default=@string/na}"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bth_share"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:onClick="@{v->BindingAdapters.shareURL(v,imageModel)}"
+            android:text="@string/share"
+            android:textAllCaps="false"
+            android:layout_margin="10dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

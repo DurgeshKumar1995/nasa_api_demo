@@ -1,8 +1,8 @@
 package com.unorg.nasa.ui.main.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -10,6 +10,7 @@ import androidx.paging.LoadState
 import com.unorg.nasa.R
 import com.unorg.nasa.databinding.ActivityMainBinding
 import com.unorg.nasa.model.Photo
+import com.unorg.nasa.ui.details.view.ImageDetailsActivity
 import com.unorg.nasa.ui.main.view.adapter.ImageAdapter
 import com.unorg.nasa.ui.main.view.adapter.LoadingStateAdapter
 import com.unorg.nasa.ui.main.view_model.MainViewModel
@@ -31,7 +32,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(ActivityMainBinding.inflate(layoutInflater).also { binding = it }.root)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding.progressBar.visibility = View.VISIBLE
 
         val roverType = if (intent.hasExtra(Constants.ROVER_TYPE)) {
             try {
@@ -61,7 +61,9 @@ class MainActivity : AppCompatActivity() {
         )
         if (NetworkUtil.isOnline(this)) {
             //viewModel.getPhotos(roverType, sol)
+            binding.progressBar.isVisible = true
             setupRequests(roverType, sol)
+
         } else {
             Toast.makeText(baseContext, getString(R.string.connect_to_internet), Toast.LENGTH_SHORT)
                 .show()
@@ -110,7 +112,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun actionOnItemClick(photo: Photo?) {
-        Toast.makeText(baseContext, "Hello", Toast.LENGTH_SHORT).show()
+        val intent = Intent(applicationContext,ImageDetailsActivity::class.java)
+        intent.putExtra(Constants.IMADE_DETAIL_KEY,photo)
+        startActivity(intent)
     }
 
     private fun retry() {
@@ -121,7 +125,6 @@ class MainActivity : AppCompatActivity() {
         viewModel.getData(roverType, solKey).observe(this){
 
             it?.let {
-                binding.progressBar.visibility = View.GONE
                 imageAdapter.submitData(lifecycle, it)
             }
         }
