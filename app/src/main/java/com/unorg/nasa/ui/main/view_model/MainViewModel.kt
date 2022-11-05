@@ -12,7 +12,6 @@ import kotlinx.coroutines.launch
 
 class MainViewModel(private val apiRepository: APIRepository,private val pagerRepo: RoverPagerRepo):ViewModel() {
 
-
     fun getPhotos(roverType: String,solKey:Int){
         viewModelScope.launch {
            val data=  apiRepository.getPhotos(roverType,solKey,1)
