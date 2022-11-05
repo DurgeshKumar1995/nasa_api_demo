@@ -1,10 +1,11 @@
 package com.unorg.nasa.ui.main.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import com.unorg.nasa.R
 import com.unorg.nasa.databinding.ActivityMainBinding
@@ -15,7 +16,6 @@ import com.unorg.nasa.ui.main.view_model.MainViewModel
 import com.unorg.nasa.utils.Constants
 import com.unorg.nasa.utils.NetworkUtil
 import com.unorg.nasa.utils.Rovers
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -30,7 +30,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(ActivityMainBinding.inflate(layoutInflater).also { binding = it }.root)
 
-
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.progressBar.visibility = View.VISIBLE
 
         val roverType = if (intent.hasExtra(Constants.ROVER_TYPE)) {
             try {
@@ -98,6 +99,16 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     private fun actionOnItemClick(photo: Photo?) {
         Toast.makeText(baseContext, "Hello", Toast.LENGTH_SHORT).show()
     }
@@ -106,9 +117,11 @@ class MainActivity : AppCompatActivity() {
         imageAdapter.retry()
     }
 
-    fun setupRequests(roverType: String,solKey:Int) {
+    private fun setupRequests(roverType: String,solKey:Int) {
         viewModel.getData(roverType, solKey).observe(this){
+
             it?.let {
+                binding.progressBar.visibility = View.GONE
                 imageAdapter.submitData(lifecycle, it)
             }
         }
