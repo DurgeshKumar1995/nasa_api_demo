@@ -11,6 +11,7 @@
 * Material Design
 * Retrofit
 
-(screenshot/Screenshot_1.png)
+![Home Screen](https://github.com/DurgeshKumar1995/nasa_api_demo/blob/main/screenshots/Screenshot_1.png)
+![List Screen](https://github.com/DurgeshKumar1995/nasa_api_demo/blob/main/screenshots/Screenshot_2.png)
 
 
